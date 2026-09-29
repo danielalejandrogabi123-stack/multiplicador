@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class parqueadero{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== SISTEMA DE PARQUEADERO ===");
+        System.out.println("Tipo de vehículo:");
+        System.out.println("1. Automóvil ($2,000 / hora)");
+        System.out.println("2. Motocicleta ($1,000 / hora)");
+        System.out.println("3. Camión ($4,000 / hora)");
+        System.out.print("Seleccione el tipo de vehículo: ");
+        int tipoVehiculo = scanner.nextInt();
+
+        System.out.print("Ingrese las horas de permanencia: ");
+        int horas = scanner.nextInt();
+
+        double tarifaHora = 0;
+
+        switch (tipoVehiculo) {
+            case 1:
+                tarifaHora = 2000;
+                break;
+            case 2:
+                tarifaHora = 1000;
+                break;
+            case 3:
+                tarifaHora = 4000;
+                break;
+            default:
+                System.out.println("Tipo de vehículo inválido.");
+                scanner.close();
+                return;
+        }
+
+        double subtotal = horas * tarifaHora;
+        double descuento = 0;
+
+        // Descuento del 10% si permanece más de 5 horas
+        if (horas > 5) {
+            descuento = subtotal * 0.10;
+        }
+
+        double totalPagar = subtotal - descuento;
+
+        System.out.println("\n--- FACTURA DE COBRO ---");
+        System.out.println("Subtotal: $" + subtotal);
+        System.out.println("Descuento aplicado: $" + descuento);
+        System.out.println("Total a pagar: $" + totalPagar);
+
+        scanner.close();
+    }
+}
