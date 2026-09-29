@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class juego{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int numeroSecreto = 42; // Número a adivinar
+        int intentosRestantes = 5;
+        boolean adivinado = false;
+
+        System.out.println("=== JUEGO: ADIVINA EL NÚMERO SECRETO ===");
+        System.out.println("Tienes 5 intentos para adivinar un número entre 1 y 100.");
+
+        while (intentosRestantes > 0 && !adivinado) {
+            System.out.print("\nIntroduce tu número: ");
+            int intento = scanner.nextInt();
+
+            if (intento == numeroSecreto) {
+                adivinado = true;
+                System.out.println("¡Felicidades! Has adivinado el número secreto.");
+            } else {
+                intentosRestantes--;
+                if (intento < numeroSecreto) {
+                    System.out.println("El número secreto es MAYOR.");
+                } else {
+                    System.out.println("El número secreto es MENOR.");
+                }
+
+                if (intentosRestantes > 0) {
+                    System.out.println("Te quedan " + intentosRestantes + " intentos.");
+                } else {
+                    System.out.println("¡Game Over! Te has quedado sin intentos. El número era: " + numeroSecreto);
+                }
+            }
+        }
+
+        scanner.close();
+    }
+}
