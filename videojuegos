@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class TiendaVideojuegos {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Variables requeridas
+        int opcion = 0;
+        int contadorVentas = 0;
+        double totalVentas = 0.0;
+        
+        // Ciclo while para mantener la tienda activa
+        while (opcion != 4) {
+            System.out.println("\n=================================");
+            System.out.println("  SISTEMA TIENDA DE VIDEOJUEGOS  ");
+            System.out.println("=================================");
+            System.out.println("1. Comprar videojuego");
+            System.out.println("2. Consultar ventas");
+            System.out.println("3. Clasificar cliente");
+            System.out.println("4. Cerrar tienda");
+            System.out.print("Seleccione una opción: ");
+            
+            opcion = scanner.nextInt();
+            
+            // Evaluamos la opción con switch
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese el precio del videojuego: $");
+                    double precio = scanner.nextDouble();
+                    if (precio > 0) {
+                        totalVentas += precio;
+                        contadorVentas++;
+                        System.out.println("¡Venta registrada con éxito!");
+                    } else {
+                        System.out.println("El precio ingresado debe ser mayor a 0.");
+                    }
+                    break;
+                    
+                case 2:
+                    System.out.println("\n--- REPORTE DE VENTAS ---");
+                    System.out.println("Cantidad de videojuegos vendidos: " + contadorVentas);
+                    System.out.println("Monto total acumulado: $" + totalVentas);
+                    break;
+                    
+                case 3:
+                    System.out.print("Ingrese el total comprado por el cliente: $");
+                    double totalCliente = scanner.nextDouble();
+                    
+                    // Evaluación mediante if/else
+                    if (totalCliente <= 0) {
+                        System.out.println("Monto no válido.");
+                    } else if (totalCliente < 100) {
+                        System.out.println("Categoría: Cliente BRONCE (Compras menores a $100)");
+                    } else if (totalCliente <= 300) {
+                        System.out.println("Categoría: Cliente PLATA (Compras de $100 a $300)");
+                    } else {
+                        System.out.println("Categoría: Cliente ORO (Compras mayores a $300)");
+                    }
+                    break;
+                    
+                case 4:
+                    System.out.println("\nCerrando el sistema de la tienda. ¡Jornada finalizada!");
+                    break;
+                    
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+                    break;
+            }
+        }
+        
+        scanner.close();
+    }
+}
